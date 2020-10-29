@@ -9,7 +9,7 @@ app.use(morgan("dev"));
 // CORS
 process.stdout.write("\x1b[32m" + "Configuring CORS... " + "\x1b[0m");
 const cors = require('cors');
-const whitelist = ['http://localhost:3000', 'netlify.domaine']
+const whitelist = ['http://localhost:3000', 'https://pwapp-lemakis.netlify.app']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
