@@ -12,7 +12,7 @@ const ReminderSchema = new Schema({
 });
 
 const TaskSchema = new Schema({
-  user_id: { type: String, required: true }, // may change (name & type)
+  user_id: { type: String, required: true, select: false }, // may change (name & type)
   category: { type: String, required: true, enum: ['task', 'meeting'] },
   title: { type: String, required: true },
   description: { type: String },
@@ -21,6 +21,8 @@ const TaskSchema = new Schema({
   reminders: { type: [ReminderSchema] },
   status: { type: String, enum: ['waiting', 'active', 'done'], default: 'waiting' },
 });
+
+TaskSchema.set('toJSON', { virtuals: true });
 
 export interface IReminder {
   name: string;

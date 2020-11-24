@@ -6,6 +6,7 @@ export default function dbConnect(dbConnectionString: string): Promise<typeof mo
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     },
   );
 }
