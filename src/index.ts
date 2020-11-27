@@ -5,7 +5,7 @@ import dbConnect from './services/db.service';
 dotenv.config();
 
 dbConnect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`).then(() => {
-  const PORT = process.env.PORT || 3001;
+  const PORT = process.env.PORT || 8080;
   app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 }).catch((err) => {
   console.error('DB error: ', err);
