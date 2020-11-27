@@ -10,7 +10,10 @@ class TaskService {
   }
 
   public static async createOrUpdate(task: any): Promise<TaskDocument | null> {
-    return Task.findOneAndUpdate(task.id, task, { new: true, upsert: true }).exec();
+    if (task.id) {
+      return Task.findOneAndUpdate(task.id, task /*, { new: true, upsert: true }*/).exec(); // eslint-disable-line
+    }
+    return Task.create(task);
   }
 }
 
