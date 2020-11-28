@@ -14,7 +14,7 @@ class App {
   }
 
   private initGlobalMiddlewares(): void {
-    this.app.use(express.json());
+    this.app.use(express.json({ limit: '200mb' }));
 
     // Request logger
     this.app.use(morgan('dev'));
