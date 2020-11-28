@@ -15,6 +15,7 @@ const TaskSchema = new Schema({
   user_id: { type: String, required: true, select: false }, // may change (name & type)
   category: { type: String, required: true, enum: ['task', 'meeting'] },
   title: { type: String, required: true },
+  globalPicture: { type: String },
   description: { type: String },
   deadline: { type: Date },
   location: { type: String }, // may change (name)
