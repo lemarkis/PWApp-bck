@@ -7,7 +7,7 @@ import {
 } from 'mongoose';
 
 const ReminderSchema = new Schema({
-  name: { type: String, required: true },
+  id: { type: Number, required: true },
   date: { type: Date, required: true },
 });
 

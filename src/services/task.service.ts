@@ -11,6 +11,8 @@ class TaskService {
 
   public static async createOrUpdate(task: any): Promise<TaskDocument | null> {
     if (task.id) {
+      // eslint-disable-next-line
+      delete task._id;
       return Task.findOneAndUpdate(task.id, task /*, { new: true, upsert: true }*/).exec(); // eslint-disable-line
     }
     return Task.create(task);
