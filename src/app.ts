@@ -24,6 +24,7 @@ class App {
     const corsOptions: cors.CorsOptions = {
       origin: (origin: string | undefined,
         callback: (err: Error | null, allow?: boolean) => void): void => {
+        console.log(origin, whitelist);
         if (origin && whitelist.includes(origin)) {
           callback(null, true);
         } else {
