@@ -5,6 +5,10 @@ class TaskService {
     return Task.find({ user_id: id }).exec();
   }
 
+  public static async getAll(): Promise<TaskDocument[]> {
+    return Task.find().exec();
+  }
+
   public static async deleteById(id: any): Promise<TaskDocument | null> {
     return Task.findByIdAndDelete(id).exec();
   }

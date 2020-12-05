@@ -1,5 +1,6 @@
 import testRouter from './test.router';
 import taskRouter from './task.router';
+import pushRouter from './push.router';
 import express = require('express'); // eslint-disable-line import/order
 
 class APIRouter {
@@ -13,6 +14,7 @@ class APIRouter {
   private init(): void {
     this.router.use('/test', testRouter);
     this.router.use('/task', taskRouter);
+    this.router.use('/push', pushRouter);
   }
 }
 

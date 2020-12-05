@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import app from './app';
 import dbConnect from './services/db.service';
+import sendReminderNotifiaction from './job';
 
 dotenv.config();
 
@@ -15,3 +16,5 @@ dbConnect(dbString).then(() => {
   console.error('DB error: ', err);
   process.exit(3);
 });
+
+setInterval(sendReminderNotifiaction, 60 * 1000);
