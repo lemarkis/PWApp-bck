@@ -37,23 +37,25 @@ export default function sendReminderNotification(): void {
         const now = new Date();
         if (Math.abs(now.getTime() - rem.date.getTime()) <= ONE_MIN) {
           SubscriptionService.getSubscriptionByUserId(task.user_id).then((sub) => {
-            webPush.sendNotification(sub[0].sub, JSON.stringify({
-              notification: {
-                title: '',
-                body: `'${task.title}' se termine dans ${displayRemainingTime(rem.date, task.deadline)}.`,
-                vibrate: [100, 100, 100, 100, 100],
-                actions: [
-                  {
-                    action: 'explore',
-                    title: 'Aller sur le site',
-                  },
-                  {
-                    action: 'close',
-                    title: 'Fermer la notification',
-                  },
-                ],
-              },
-            }));
+            if (sub.length > 0) {
+              webPush.sendNotification(sub[0].sub, JSON.stringify({
+                notification: {
+                  title: '',
+                  body: `'${task.title}' se termine dans ${displayRemainingTime(rem.date, task.deadline)}.`,
+                  vibrate: [100, 100, 100, 100, 100],
+                  actions: [
+                    {
+                      action: 'explore',
+                      title: 'Aller sur le site',
+                    },
+                    {
+                      action: 'close',
+                      title: 'Fermer la notification',
+                    },
+                  ],
+                },
+              }));
+            }
           });
         }
       });
