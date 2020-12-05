@@ -20,10 +20,19 @@ class App {
     this.app.use(morgan('dev'));
 
     // CORS
-    // const corsOptions: cors.CorsOptions = {
-    //   origin: '*',
-    // };
-    // this.app.use(cors(corsOptions));
+    const whitelist = ['http://localhost:3000', 'https://pwapp-lemakis.netlify.app'];
+    const corsOptions: cors.CorsOptions = {
+      origin: (origin: string | undefined,
+        callback: (err: Error | null, allow?: boolean) => void): void => {
+        console.log(origin, whitelist);
+        if (origin && whitelist.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+    };
+    this.app.use(cors(corsOptions));
 
     // JWT
     this.app.use(jwtCheck);

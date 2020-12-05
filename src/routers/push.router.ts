@@ -1,4 +1,4 @@
-import PushController from '../controllers.push.controller';
+import PushController from '../controllers/push.controller';
 import express = require('express'); // eslint-disable-line import/order
 
 class PushRouter {
