@@ -20,10 +20,10 @@ class App {
     this.app.use(morgan('dev'));
 
     // CORS
-    const corsOptions: cors.CorsOptions = {
-      origin: '*',
-    };
-    this.app.use(cors(corsOptions));
+    // const corsOptions: cors.CorsOptions = {
+    //   origin: '*',
+    // };
+    // this.app.use(cors(corsOptions));
 
     // JWT
     this.app.use(jwtCheck);
