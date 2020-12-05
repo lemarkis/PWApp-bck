@@ -6,7 +6,7 @@ class TaskService {
   }
 
   public static async getAll(): Promise<TaskDocument[]> {
-    return Task.find().exec();
+    return Task.find().select('+user_id').exec();
   }
 
   public static async deleteById(id: any): Promise<TaskDocument | null> {
