@@ -17,14 +17,13 @@ class App {
     this.app.use(express.json({ limit: '200mb' }));
 
     // Request logger
-    this.app.use(morgan('dev'));
+    // this.app.use(morgan(''));
 
     // CORS
     const whitelist = ['http://localhost:3000', 'https://pwapp-lemakis.netlify.app'];
     const corsOptions: cors.CorsOptions = {
       origin: (origin: string | undefined,
         callback: (err: Error | null, allow?: boolean) => void): void => {
-        console.log(origin, whitelist);
         if (origin && whitelist.includes(origin)) {
           callback(null, true);
         } else {
