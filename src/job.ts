@@ -39,6 +39,7 @@ export default function sendReminderNotification(): void {
         if (Math.abs(now.getTime() - rem.date.getTime()) <= ONE_MIN) {
           console.log('it\'s time'); // eslint-disable-line
           SubscriptionService.getSubscriptionByUserId(task.user_id).then((sub) => {
+            console.log(sub); // eslint-disable-line
             if (sub.length > 0) {
               webPush.sendNotification(sub[0].sub, JSON.stringify({
                 notification: {
