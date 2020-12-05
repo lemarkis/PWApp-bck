@@ -31,13 +31,11 @@ const displayRemainingTime = (reminderDate: Date | undefined,
 const ONE_MIN = 60 * 1000;
 
 export default function sendReminderNotification(): void {
-  console.log('job starting'); // eslint-disable-line
   TaskService.getAll().then((tasks) => {
     tasks.forEach((task) => {
       task.reminders.forEach((rem) => {
         const now = new Date();
         if (Math.abs(now.getTime() - rem.date.getTime()) <= ONE_MIN) {
-          console.log('it\'s time'); // eslint-disable-line
           SubscriptionService.getSubscriptionByUserId(task.user_id).then((sub) => {
             if (sub) {
               webPush.sendNotification(sub.sub, JSON.stringify({
@@ -56,16 +54,11 @@ export default function sendReminderNotification(): void {
                     },
                   ],
                 },
-              })).then((res) => {
-                console.log(res);
-              }).catch((err) => {
-                console.error(err);
-              });
+              }));
             }
           });
         }
       });
     });
-    console.log('job end'); // eslint-disable-line
   });
 }
